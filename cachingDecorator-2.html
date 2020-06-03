@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        'use strict'
+        
+        let worker = {
+            slow(min, max) {
+                alert(`Called with ${min}, ${max}`);
+                return min + max;
+            }
+        };
+
+        function cachingDecorator(func, hash) {
+            let cache = new Map();
+            
+            return function() {
+                let key = hash(arguments);
+                if (cache.has(key)) {
+                    return cache.get(key);
+                }
+
+                let result = func.call(this, ...arguments); 
+                cache.set(key, result); 
+                return result;
+            };
+        }
+
+        function hash(args) {
+            return args[0] + ',' + args[1];
+        } // making one key from 2 arguments. Ex. min=1, max=4 => hash=1,4
+
+        worker.slow = cachingDecorator(worker.slow, hash);
+
+        alert( worker.slow(3, 5) );
+        alert( "Again" + worker.slow(3, 5) );
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
