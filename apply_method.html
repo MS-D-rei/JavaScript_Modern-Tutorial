@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+'use strict';
+
+function say(time, phrase) {
+    alert( `[${time}] ${this.name}: ${phrase}` );
+}
+
+let user = { name: John };
+let messageData = ['10:00', 'Hello']; // time = '10:00', phrase = 'Hello'
+
+say.apply(user, messageData); // this = user, => user.name = John
+
+/*
+call forwarding
+this is for passing arguments to anotherFunction.
+
+let wrapper = function() {
+    return anotherFunction.apply(this, arguments);
+}
+*/
+
+</script>
