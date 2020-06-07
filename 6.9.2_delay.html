@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function f(x) {
+        alert(x);
+    }
+
+    function delay(func, time) {
+        return function wrapper() {
+            setTimeout(() => func.apply(this, arguments), time);
+        }
+        // arrow function doesn't have own this. refer to wrapper's this and arguments.
+    }
+
+    /*
+    Please note how to use arrow function. The reason is as follows.
+
+    setTimeout(func, time, args)x
+    Don't run the func.
+    
+    function delay(func, time) {
+        return function(...args) {
+            setTimeout(func.apply(this, args), time); => this run the func, so doesn't work correctly.
+        };
+    }
+
+    function delay(func, time) {
+        return function(...args) {
+            setTimeout(function() {
+                func.apply(this, args); => we miss this.
+            }, time);
+        }
+    }
+    */
+
+    let f1000 = delay(f, 1000);
+    let f1500 = delay(f, 1500);
+
+    f1000("Hello");
+    f1500("Hello");
+
+</script>
