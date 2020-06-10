@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let group = {
+        title: "Our group",
+        students: ["John", "Pete", "Alice"],
+        showList2() {
+            this.students.forEach(function(student) { // this = object(group)
+                alert(this.title + ': ' + student) // this = undefined
+            });
+        },
+        showList1() {
+            this.students.forEach(
+                student => alert(this.title + ': ' + student)
+            );
+        },
+    }
+
+    group.showList1(); // works
+    group.showList2(); // TypeError: Cannot read property 'title' of undefined
+
+</script>
