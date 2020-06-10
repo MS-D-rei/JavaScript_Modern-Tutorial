@@ -28,7 +28,7 @@
     function delay(func, time) {
         return function(...args) {
             setTimeout(function() {
-                func.apply(this, args); => we miss this.
+                func.apply(this, args); => 'this' refer to 'global window object'.
             }, time);
         }
     }

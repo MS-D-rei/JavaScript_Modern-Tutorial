@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function debounce(func, time) {
+        let timeout;
+        return function wrapper() {
+            clearTimeout(timeout); // cancel when the next func is called.
+            timeout = setTimeout(() => func.apply(this, arguments), time); // and then setTimeout. After time, run the func.
+        };
+    }
+
+</script>
