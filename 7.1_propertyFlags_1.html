@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let user_1 = {
+        name: "John",
+    };
+
+    let descriptor_1 = Object.getOwnPropertyDescriptor(user_1, 'name');
+
+    alert( JSON.stringify(descriptor_1, null, 2) );
+
+/* property descriptor:
+{
+  "value": "John",
+  "writable": true,
+  "enumerable": true,
+  "configurable": true,
+}
+*/
+
+    let user_2 = {};
+
+    Object.defineProperty(user_2, 'name', {
+        value: "Pete",
+        enumerable: false, // If don't mention, these arguments will be set as false
+    });
+
+    let descriptor_2 = Object.getOwnPropertyDescriptor(user_2, 'name');
+
+    alert( JSON.stringify(descriptor_2, null, 2) );
+/*
+{
+  "value": "Pete",
+  "writable": false,
+  "enumerable": false,
+  "configurable": false,
+}
+*/
+
+</script>

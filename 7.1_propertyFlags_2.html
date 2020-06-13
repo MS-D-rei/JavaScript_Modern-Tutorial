@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let user_3 = {};
+    
+    Object.defineProperties( user_3, {
+        name: { value: "Mary", writable: true, enumerable: true, configurable: false },
+        surname: { value: "Thermos", writable: true, enumerable: true, configurable: false},
+    });
+
+    let descriptor_3 = Object.getOwnPropertyDescriptor(user_3, "surname");
+
+    alert( JSON.stringify(descriptor_3, null, 2) );
+
+    let user_4 = Object.defineProperties( {}, Object.getOwnPropertyDescriptors(user_3) );
+    let descriptor_4 = Object.getOwnPropertyDescriptor(user_4, 'name');
+    alert( JSON.stringify(descriptor_4, null, 2) );
+
+</script>
