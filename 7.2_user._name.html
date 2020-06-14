@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    // use this._name as a wrapper to control prop.
+
+    let user = {
+        get name() {
+            return this._name;
+        },
+
+        set name(value) {
+            if (value.length < 4) {
+                alert("Name is too short, at least 4 charactors");
+            }
+            this._name = value;
+        },
+    };
+
+    user.name = "Pete"; // this._name = Pete
+    alert(user.name); // call get name() returns user._name -> Pete
+    
+    user.name = "Bob"; // Name is too short
+
+</script>

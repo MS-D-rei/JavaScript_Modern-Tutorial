@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let user = {
+        name: "John",
+        surname: "Smith",
+
+        get fullName() {
+            return `${this.name} ${this.surname}`; // function without arguments, that works when a property is read,
+        },
+
+        set fullName(value) {
+            [this.name, this.surname] = value.split(" "); // func with one argument, that is called when the property is set,
+        },
+    }
+
+    alert(user.fullName); // John Smith
+
+    user.fullName = "Alice Cooper";
+    alert(user.name); // Alice
+    alert(user.surname); // Cooper
+
+</script>
