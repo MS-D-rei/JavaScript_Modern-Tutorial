@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let animal = {
+        eats: true,
+        walk: "Animal walk",
+    };
+
+    let rabbit = {
+        jumps: true,
+        eats: "carrot",
+        __proto__: animal,
+    };
+
+    let longEar = {
+        earLength: 10,
+        __proto__: rabbit,
+    };
+    
+    alert( longEar.walk ); // take from animal
+    alert( longEar.jumps ); // take from rabbit
+    alert( rabbit.eats ); // take from itself
+
+</script>

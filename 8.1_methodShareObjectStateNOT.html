@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let animal = {
+        walk() {
+            if ( !this.isSleeping ) {
+                alert("walking");
+            }
+        },
+        sleep() {
+            this.isSleeping = true;
+        },
+    };
+
+    let rabbit = {
+        name: "white rabbit",
+        __proto__: animal,
+    }
+
+    rabbit.sleep();
+
+    alert(rabbit.isSleeping); // true, inherit method
+    alert(animal.isSleeping); // undefined, don't share the status of property
+    animal.walk();
+
+</script>

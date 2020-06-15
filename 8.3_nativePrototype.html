@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    // obj = {} is same as obj = new Object()
+    // Object is a built-in object constructor function with its own prototype property referencing a huge object with toString and other methods.
+
+    let obj = {};
+    alert( obj.__proto__ === Object.prototype );
+
+    // Other bulit-in objects such as Array, Function, Date and others also keep methods in prototypes.
+    // Object.prototype === Array.prototype.__proto__ 
+    // Object.prototype === Date.prototype.__proto__ etc.
+
+    let arr = [1, 2, 3];
+
+    alert( arr.__proto__ === Array.prototype ); // true
+    alert( arr.__proto__.__proto__ === Object.prototype ); // true
+    alert( arr.__proto__.__proto__.__proto__ ); // null Object.prototype is the top property.
+
+    function f() {}
+
+    alert(f.__proto__ === Function.prototype ); 
+    alert(f.__proto__.__proto__ === Object.prototype );
+
+</script>

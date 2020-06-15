@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let animal = {
+        eats: true,
+    };
+
+    let rabbit = {
+        jumps: true,
+        __proto__: animal,
+    }
+
+    alert( Object.keys(rabbit) ); // returns only own keys
+    
+    for (let prop in rabbit) { // loop over own and inherited keys
+        alert(prop); // jumps, eats
+    }
+
+    for (let prop in rabbit) {
+        let isOwn = rabbit.hasOwnProperty(prop); // obj.hasOwnProperty(value) returns true if obj has value.
+        if (isOwn) {
+            alert(`Our: ${prop}`);
+        } else {
+            alert(`Inherited: ${prop}`);
+        }
+    }
+
+</script>

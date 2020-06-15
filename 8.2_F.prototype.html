@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let animal = {
+        ears: true,
+    };
+
+    function Rabbit(name) {
+        this.name = name;
+    }
+
+    Rabbit.prototype = animal; // prototype is a property.
+
+    let rabbit = new Rabbit("White rabbit");
+
+    alert( rabbit.ears );
+
+    function Bear(name) {
+        this.name = name;
+        alert(name);
+    }
+    // by default, Bear.constructor = { constructor: Bear }
+    alert( Bear.prototype.constructor == Bear ); 
+    
+    let bear = new Bear("White bear");
+    alert(bear.constructor == Bear); // true, from prototype
+
+    let bear_2 = new bear.constructor("Black bear");
+    let bear_3 = new Bear("Red bear");
+
+
+</script>
