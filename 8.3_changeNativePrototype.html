@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    if (!String.prototype.repeat) {
+        String.prototype.repeat = function(n) {
+            return new Array(n + 1).join(this);
+        };
+    }
+
+    alert( "La".repeat(3) );
+
+    let obj = {
+        0: "Hello",
+        1: "world",
+        length: 2,
+    }; // array-like
+
+    obj.join = Array.prototype.join;
+    // it works, algorithm of the built-in join method only cares about the correct indexes and 
+    // the length property. It doesn't check whether the obj is indeed array or not.
+    // Borrowing methods is flexible, it allows to mix functionalities from different objs.
+
+    alert( obj.join(','));
+
+</script>

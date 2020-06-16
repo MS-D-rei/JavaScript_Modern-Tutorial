@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function f() {
+        alert("Hello");
+    }
+
+    if (!Function.prototype.defer) {
+        Function.prototype.defer = function (time) {
+            setTimeout(this, time);
+        };
+    }
+
+    f.defer(1000) //
+
+</script>

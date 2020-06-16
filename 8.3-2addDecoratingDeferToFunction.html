@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function f(a, b) {
+        alert(a + b);
+    }
+
+    if (!Function.prototype.defer) {
+        Function.prototype.defer = function(time) {
+            let func = this;
+            return function(...args) {
+                setTimeout( () => func.apply(this, args), time );
+            }
+        };
+    }
+
+    f.defer(1000)(1, 2)
+
+    let user = {
+        name: "John",
+        sayHi() {
+            alert(this.name);
+        },
+    };
+
+    user.sayHi = user.sayHi.defer(2000);
+
+    user.sayHi();
+
+</script>
