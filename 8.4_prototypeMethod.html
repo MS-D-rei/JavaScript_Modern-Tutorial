@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let animal = {
+        eats: true,
+    }
+
+    let rabbit = Object.create(animal, {
+        jumps: { value: true, writable: true, enumerable: true, configurable: true, },
+    });
+
+    alert(rabbit.eats); // true
+
+    alert(Object.getPrototypeOf(rabbit) === animal); // true
+
+    Object.setPrototypeOf(rabbit, {});
+
+    let cloneRabbit = Object.create( Object.getPrototypeOf(rabbit), Object.getOwnPropertyDescriptors(rabbit) );
+
+    let descriptor_cloneRabbit = Object.getOwnPropertyDescriptor(cloneRabbit, 'jumps');
+    // cloning object more powerful than for...in loop
+    // this makes a exact copy including all props enumerable, configurable, data props and accesor props.
+
+    alert( JSON.stringify(descriptor_cloneRabbit) );
+    alert( Object.getPrototypeOf(cloneRabbit) === animal ); // false
+
+</script>
