@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function Rabbit(name) {
+        this.name = name;
+    }
+
+    Rabbit.prototype.sayHi = function() {
+        alert(this.name);
+    };
+
+    let rabbit = new Rabbit("Rabbit");
+
+    rabbit.sayHi(); // Rabbit. this = rabbit
+    Rabbit.prototype.sayHi(); // undefined. this = Object, Rabbit doesn't have name prop value. this.name == undefined.
+    Object.getPrototypeOf(rabbit).sayHi(); // undefined. this = Object, Rabbit doesn't have
+    rabbit.__proto__.sayHi(); // undefined. same reason.
+
+</script>
