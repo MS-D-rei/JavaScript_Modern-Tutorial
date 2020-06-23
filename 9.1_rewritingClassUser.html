@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function User(name) {
+        this.name = name;
+    }
+    // 1. create constructor function
+
+    User.prototype.sayHi = function() {
+        alert(this.name);
+    };
+    // 2. add the method
+
+    let user = new User("Tifa");
+    user.sayHi();
+
+    // the result is the same but there are some important differences.
+    // 1. a function created by class is labelled by a special internal property [[FunctionKind]]:"classConstructor"
+    // 2. Class methods are non-enumerable. A class definition sets enumerable flag to false for all methods in the "prototype".
+    // 3. Classes always use strict. All code inside the class construct is automatically in strict mode.
+
+</script>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class User {
+        constructor(name) {
+            this.name = name;
+        } // no comma between class methods.
+
+        sayHi() {
+            alert(this.name);
+        }
+
+    }
+
+    let user = new User("Tifa");
+    // when new User is called, a new obj is created and constructor runs with arguments.
+
+    user.sayHi(); // Tifa. user: User { name: "Tifa"}, this = User, not user, this.name == User.name == "Tifa"
+
+    alert( typeof User ); // function
+    // a class is a kind of function in JavaScript.
+
+    alert( User === User.prototype.constructor ); // true
+    // more precisely, it is constructor method.
+
+    alert( User.prototype.sayHi ); // alert(this.name)
+    // the methods are in User.prototype
+
+    alert( Object.getOwnPropertyNames(User.prototype) ); // 
+    // there are 2 methods in the prototype.
+    
+</script>

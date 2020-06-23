@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class User {
+        name = "John";
+
+        sayHi() {
+            alert(`Hello, ${this.name}`);
+        }
+    }
+
+    new User().sayHi();
+
+    let user = new User();
+    alert(user.name); // John
+    alert(user.prototype.name); // TypeError: Cannnot read property 'name' of undefined
+
+</script>
