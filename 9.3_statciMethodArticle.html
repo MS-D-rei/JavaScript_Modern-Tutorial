@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class Article {
+        constructor(title, date) {
+            this.title = title;
+            this.date = date;
+        }
+
+        static compare(articleA, articleB) {
+            return articleA.date - articleB.date;
+        }
+    }
+
+    // usage
+    let article = [
+        new Article("HTML", new Date(2019, 1, 1)),
+        new Article("CSS", new Date(2019, 0, 1)),
+        new Article("JS", new Date(2019, 11, 1)),
+    ];
+
+    article.sort(Article.compare);
+    
+    alert( article[0].title );
+
+</script>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class Animal {
+        constructor(name) {
+            this.name = name;
+            this.speed = 0;
+        }
+        run(speed) {
+            this.speed = speed;
+            alert(`${this.name} runs with speed ${this.speed}.`);
+        }
+        stop() {
+            this.speed = 0;
+            alert(`${this.name} stands still.`);
+        }
+    }
+
+    let animal = new Animal("The First");
+
+    class Rabbit extends Animal { // extends sets Rabbit.prototype = Animal.prototype
+        // if don't write constructor, inherit constructor from Animal so don't need to write.
+        constructor(name, earLength) {
+            super(name);
+            this.earLength = earLength;
+        }
+        hide() {
+            alert(`${this.name} hides.`);
+        }
+        stop() {
+            super.stop(); // calls the parent' stop method
+            this.hide();
+        }
+    } 
+
+    let rabbit = new Rabbit("White Rabbit", 10);
+
+    rabbit.run(5); 
+    /*
+    JS engine checks as follows
+    1. The rabbit object.
+    2. Rabbit.prototype.
+    3. Animal.prototype. (this case)
+    */
+    rabbit.hide();
+    rabbit.stop();
+
+    alert(rabbit.earLength); // 10
+
+</script>

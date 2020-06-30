@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class User {
+        static staticMethod() {
+            alert(this === User);
+        }
+    }
+
+    User.staticMethod(); // true
+
+    User.staticMethod2 = function() {
+        alert(this === User);
+    };
+
+    User.staticMethod2(); // true
+
+    // static does the same as assigning it as a property.
+
+</script>
