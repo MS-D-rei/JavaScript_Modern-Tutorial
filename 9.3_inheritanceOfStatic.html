@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class Animal {
+        static planet = "Earth"; // static property
+
+        constructor(name, speed) {
+            this.name = name;
+            this.speed = speed;
+        }
+
+        run(speed = 0) {
+            this.speed = speed;
+            alert(`${this.name} runs with speed ${this.speed}`);
+        }
+
+        static compare(animalA, animalB) {
+            return animalA.speed - animalB.speed;
+        }
+    }
+
+    class Rabbit extends Animal {
+        hide() {
+            alert(`${this.name} hides`);
+        }
+    }
+
+    let rabbits = [
+        new Rabbit("White rabbit", 10),
+        new Rabbit("Black rabbit", 5),
+    ];
+
+    rabbits.sort(Rabbit.compare);
+
+    rabbits[0].run();
+
+    alert(Rabbit.planet);
+
+    //inheritance works both for regular and static methods.
+    
+    alert(Rabbit.__proto__ === Animal); // true, for static
+
+    alert(Rabbit.prototype.__proto__ === Animal.prototype); // true, for regular methods
+
+</script>
