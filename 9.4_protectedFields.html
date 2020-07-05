@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class CoffeeMachine {
+        _waterAmount = 0; // _waterAmount is protected property
+
+        set waterAmount(value) {
+            if (value < 0) {
+                throw new Error("Negative water");
+            }
+            this._waterAmount = value;
+        }
+
+        get waterAmount() {
+            return this._waterAmount;
+        }
+
+        constructor(power) {
+            this._power = power;
+        }
+
+        get power() {
+            return this._power;
+        }
+        // To make _power read-only, don't make setter.
+    }
+
+    let coffeeMachine = new CoffeeMachine(100)
+
+    coffeeMachine.waterAmount = -100; // Error: Negative water
+
+    coffeeMachine.power = 50; // TypeError: Cannot set property power of #<CoffeeMachine> which has only a getter
+
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class CoffeeMachine {
+
+        #waterAmount = 0;
+
+        // most of the time, get.../set... functions are preferred.
+        getWaterAmount() {
+            return this.#waterAmount;
+        }
+
+        setWaterAmount(value) {
+            if (value < 0) throw new Error("Nagative water");
+            this.#waterAmount = value;
+        }
+    }
+
+    let coffeeMachine = new CoffeeMachine();
+
+    coffeeMachine.setWaterAmount(100); // not coffeeMachine.setWaterAmount = xxx, it was property, now this is method.
+
+    alert(coffeeMachine.#waterAmount); // Error, can't access from outside of the class.
+
+</script>
