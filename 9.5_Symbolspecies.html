@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class PowerArray_1 extends Array {
+        isEmpty() {
+            return this.length === 0;
+        }
+    }
+
+    let arr1 = new PowerArray_1(1, 2, 5, 10, 50);
+    alert(arr1.isEmpty()); // false
+
+    let filteredArr1 = arr1.filter(item => item >= 10);
+    alert(filteredArr1); // 10, 50
+    alert( filteredArr1.isEmpty() ); // false
+
+    alert(arr1.constructor === PowerArray_1); // true
+
+    /*
+    special static getter Symbol.species to the class.
+    If it exists, it should return the constructor that
+    JavaScript will use internally to create new entities in map, filter and so on.
+    */
+
+    class PowerArray_2 extends Array {
+        isEmpty() {
+            return this.length === 0;
+        }
+
+        // built-in methods will use Array as the constructor
+        static get [Symbol.species]() {
+            return Array;
+        }
+    }
+
+    let arr2 = new PowerArray_2(1, 2, 5, 10, 50);
+    alert(arr2.isEmpty()); // false
+
+    let filteredArr2 = arr2.filter(item => item >= 10);
+    alert(filteredArr2.isEmpty()); // Error: filteredArr2 is not a function. .filter use Array but it doesn't have isEmpty().
+
+</script>
