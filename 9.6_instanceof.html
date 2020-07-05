@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class Rabbit_1 {}
+
+    let rabbit_1 = new Rabbit_1;
+    alert( rabbit_1 instanceof Rabbit_1 ); // true
+
+    function Rabbit_2() {}
+
+    alert( new Rabbit_2() instanceof Rabbit_2 ); // true
+
+    let arr = [1, 2, 3];
+
+    alert( arr instanceof Array ); // true
+    alert( arr instanceof Object ); // true
+
+    // instanceof examines the prototype chain for the check.
+    // 1. If there is a static method Symbol.hasInstance, 
+    // call it Class[Symbol.hasInstance](obj). It should return true or false.
+    // 2. Most classes don't have Symbol.hasInstance, instanceof check with prototype chain.
+
+    class Animal_1 {
+        static [Symbol.hasInstance](obj) {
+            if (obj.canEat) return true;
+        }
+    }
+
+    let obj = { canEat: true };
+    alert( obj instanceof Animal_1 ); // true
+
+    class Animal_2 {}
+    class Rabbit extends Animal_2 {}
+
+    let rabbit = new Rabbit();
+    alert( rabbit instanceof Animal_2 ); // true
+    // rabbit.__proto__ === Rabbit.prototype
+    // rabbit.__proto__.__proto___ === Animal.prototype <- check step by step
+
+
+</script>

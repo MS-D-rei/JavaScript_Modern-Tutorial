@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let typeofCheck = Object.prototype.toString;
+
+    alert( {}.toString.call(123) ); // [object Number]
+
+    let arr = [1, 2, 3];
+    alert( {}.toString.call(arr) ); // [object Array]
+    alert( typeofCheck.call(arr) ); // [object Array]
+
+</script>
