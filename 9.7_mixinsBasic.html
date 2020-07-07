@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let sayHiMixin = {
+        sayHi() {
+            alert(`Hello ${this.name}`);
+        },
+        sayBye() {
+            alert(`Bye ${this.name}`);
+        },
+    };
+
+    class User {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+
+    // put sayHiMixin into User
+    Object.assign(User.prototype, sayHiMixin);
+
+    new User("Jill").sayHi();
+
+</script>

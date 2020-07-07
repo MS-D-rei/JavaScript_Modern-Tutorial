@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let eventMinin = {
+        /*
+        Subscribe to event
+        Usage: menu.on('select', function(item){ ... })
+        */
+        // add function handler to the eventHandlers list.
+        on(eventName, handler) {
+            if (!this._eventHandlers) this._eventHandlers = {};
+            // if don't exist, make eventHandlers object.
+            if (!this._eventHandlers[eventName]) {
+                this._eventHandlers[eventName] = [];
+            }
+            // if the prop key don't exist, make eventName property in eventHandlers object.
+            this._eventHandlers[eventName].push(handler);
+            // add handler as a value
+        },
+
+        /*
+        Cancel the subscription
+        Usage: menu.off('select', handler)
+        */
+        // remove the function from the handlers list
+        off(eventName, handler) {
+            let handlers = this._eventHandlers?.[eventName];
+            if (!handlers) return; // no handlers for that event
+            for (let i = 0; i < handlers.length; i++) {
+                if (handlers[i] === handler) {
+                    handlers.splice(i--, 1);
+                }
+            }
+        },
+        /*
+        Generate an event with the given name and data
+        this.trigger('select', data1, data2);
+        */
+        trigger(eventName, ...args) {
+            if (!this._eventHandlers || !this._eventHandlers[eventName]) {
+                return; // no handlers for that event
+            }
+            // call all handlers in the eventHandlers list.
+            this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
+        },
+    }
+
+    class Menu {
+        choose(value) {
+            this.trigger("select", value);
+        }
+    }
+
+    // add the mixin
+    Object.assign(Menu.prototype, eventMinin);
+
+    let menu = new Menu;
+
+    menu.on("select", value => alert(`Value selected ${value}`));
+
+    menu.choose("1234");
+
+</script>
