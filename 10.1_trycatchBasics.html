@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    try {
+        alert('Start try');
+
+        lalala;
+
+        alert('End try');
+    } catch(err) {
+        alert(err.name); // RefereceError
+        alert(err.message); // lalala is not defined
+        alert(err.stack); // ReferenceError: lalala is not defined at (...call stack)
+        alert(err); // name: message
+    }
+
+    // JavaScript engine has 2 phases.
+    // 1. read the code. Error in this phase is parse-time error.
+    //    if JS can't the code, syntax error will be shown in console.
+    // 2. call the code. Error in this phase is runtime error.
+    // try...catch can handle only runtime error.
+
+</script>

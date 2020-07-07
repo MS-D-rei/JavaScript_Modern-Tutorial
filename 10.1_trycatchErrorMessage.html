@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let jsonData_1 = '{"name": "John", "age": 30}'; // data from the server
+
+    let user_1 = JSON.parse(jsonData_1);
+
+    alert(user_1.name);
+    alert(user_1.age);
+
+    let jsonData_2 = "{ bad json }";
+
+    try {
+        let user_2 = JSON.parse(jsonData_2);
+        alert(user_2.name);
+    } catch(err) {
+        alert("Oops, the data has errors, please try it again.");
+        alert(err.name); // SyntaxError
+        alert(err.message); // Unexpected token b in JSON at position 2
+    }
+
+</script>
