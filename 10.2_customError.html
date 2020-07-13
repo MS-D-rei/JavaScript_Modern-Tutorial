@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    class MyError extends Error {
+        constructor(message) {
+            super(message);
+            this.name = this.constructor.name;
+        }
+    }
+
+    class ValidationError extends MyError {
+        constructor(message) {
+            super(message) // have to use super to use parent constructor.
+        }
+    }
+
+    class PropertyRequiredError extends ValidationError {
+        constructor(property) {
+            super("No property: " + property);
+            this.property = property;
+        }
+    }
+
+    function readUser(json) {
+        let user = JSON.parse(json);
+
+        if (!user.age) {
+            throw new PropertyRequiredError("age");
+        }
+        if (!user.name) {
+            throw new PropertyRequiredError("name");
+        }
+        return user;
+    }
+
+    let jsonData = '{"age": 25}';
+
+    alert( new PropertyRequiredError("field").name );
+
+    try {
+        let user = readUser(jsonData);
+    } catch (err) {
+        if (err instanceof ValidationError) {
+            alert("Invalid data: " + err.message); 
+            alert(err.name); // PropertyRequiredError
+            alert(err.property); // name
+        } else if (err instanceof SyntaxError) {
+            alert("JSON syntax error: " + err.message);
+        } else {
+            throw err; // unknown error, rethrow it.
+        }
+    }
+
+</script>

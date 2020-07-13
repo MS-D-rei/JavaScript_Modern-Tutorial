@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<script>
+
+    // this code is to omit many if...else to implement error causes.
+    // take low level exceptions and wrap them into ReadError
+
+    class MyError extends Error {
+        constructor(message) {
+            super(message);
+            this.name = this.constructor.name;
+        }
+    }
+
+    class ReadError extends MyError {
+        constructor(message, cause) {
+            super(message);
+            this.cause = cause;
+        }
+    }
+
+    class ValidationError extends MyError {}
+
+    class PropertyRequiredError extends ValidationError {
+        constructor(property) {
+            super("No property: " + property);
+            this.property = property;
+        }
+    }
+
+    function validateUser(user) {
+        if (!user.age) {
+            throw new PropertyRequiredError("age");
+        }
+        if (!user.name) {
+            throw new PropertyRequiredError("name");
+        }
+    }
+
+    function readUser(json) {
+        let user;
+
+        // check json syntactically correct or not.
+        try {
+            user = JSON.parse(json);
+        } catch (err) {
+            if (err instanceof SyntaxError) {
+                throw new ReadError("SyntaxError", err);
+            } else {
+                throw err;
+            }
+        }
+
+        // check json is valid data or not.
+        try {
+            validateUser(user);
+        } catch (err) {
+            if (err instanceof ValidationError) {
+                throw new ReadError("ValidationError", err); // err == No property: age
+            } else {
+                throw err;
+            }
+        }
+    }
+
+    let json = '{ "bad": "json" }';
+
+    try {
+        readUser(json);
+    } catch (err) {
+        if (err instanceof ReadError) {
+            alert(err); // ReadError: ValidationError
+            alert("Original error: " + err.cause); // Original error: PropertyRequiredError: No property: age
+        } else {
+            throw err;
+        }
+    }
+    
+</script>
