@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <ul>
+            <li>the</li>
+            <li>test</li>
+        </ul>
+        <ul>
+            <li>has</li>
+            <li>passed</li>
+        </ul>
+        <script>
+            let elements = document.querySelectorAll('ul > li:last-child');
+
+            for (let elem of elements) { // elements: NodeList(2) [li, li]
+                alert(elem.innerHTML); // elem: li, .innerHTML: test. elem: li, innerHTML: passed
+            }
+
+            // querySelector picks the first of the NodeList of querySelectorAll
+            alert( document.querySelectorAll('ul > li:last-child')[0] === document.querySelector('ul > li:last-child') ); // true
+            
+        </script>
+    </body>
+</html>
