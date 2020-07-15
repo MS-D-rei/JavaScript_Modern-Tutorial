@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!-- #text \n indent -->
+        <div>Begin</div>
+
+        <ul>
+            <li>Information</li>
+        </ul>
+
+        <div>End</div>
+
+        <script>
+            for ( let i = 0; i < document.body.childNodes.length; i++ ) {
+                alert( document.body.childNodes[i] );
+            }
+            // [object Text] -- \n and indentation
+            // [object HTMLDivElement]
+            // [object Text] -- Begin
+            // [object HTMLUListElement]
+            // [object Text] -- Information
+            // [object HTMLDivElement]
+            // [object Text] -- End
+            // [object HTMLScriptElement]
+
+            for ( let elem of document.body.children ) {
+                alert(elem);
+            }
+            // [object HTMLDivElement]
+            // [object HTMLUListElement]
+            // [object HTMLDivElement]
+            // [object HTMLScriptElement]
+        </script>
+
+    </body>
+</html>
