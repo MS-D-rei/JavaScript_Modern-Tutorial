@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>Paragraph</p>
+        <div>Div</div>
+        <div id="elem">Hello <b>World</b></div>
+
+        <script>
+            alert( document.body.firstElementChild.innerHTML ); // Paragraph
+            alert( document.body.firstElementChild.innerHTML = 'New paragraph' ); // New paragraph
+            alert( document.body.firstElementChild.nextElementSibling.innerHTML += 'div'); // Divdiv
+            // innerHTML += does 1. remove old content 2. write old + new content.
+            alert( document.getElementById('elem').outerHTML );
+
+            let div = document.querySelectorAll('div')[1];
+            div.outerHTML = 'New element';
+            alert(div.outerHTML); // keep the content of outerHTML but window shows 'New element'
+        </script>
+    </body>
+</html>
