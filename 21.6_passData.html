@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div show-info = 'name'></div>
+        <div show-info = 'age'></div>
+        
+        <script>
+            'use strict'
+
+            let user = {
+                name: "Jill",
+                age: 25,
+            }
+
+            for ( let div of document.querySelectorAll('[show-info]') ) { // use [] for x-y attribute style
+                let field = div.getAttribute('show-info');
+                div.innerHTML = user[field];
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="elem" about="Elephant"></div>
+
+        <script>
+            alert( elem.getAttribute("About") ); // case-insensitive
+
+            elem.setAttribute('Test', 123); // 123 will become a string
+
+            alert( elem.outerHTML );
+            
+            for (let attr of elem.attributes) {
+                alert( `${attr.name} = ${attr.value}` );
+            }
+        </script>
+    </body>
+</html>
