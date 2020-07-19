@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <style>
+            .alert {
+                padding: 15px;
+                border: 1px solid #d6e9c6;
+                border-radius: 10px;
+                color: #3c763d;
+                background-color: #dff0d8;
+            }
+        </style>
+
+        <script>
+            'use strict'
+
+            let div = document.createElement('div'); // make a dive element
+            div.className = 'alert'; // set a class of div
+            div.innerHTML =  "<strong>Hi there!</strong> You've read an important message."; // put a message into the div
+
+            document.body.append(div); // insert the div to the body.
+
+            let div_2 = div.cloneNode(true); // make a deep clone of div.
+            div_2.querySelector('strong').innerHTML = "Bye there.";
+
+            div.after(div_2); // insert div_2 after div
+
+        </script>
+    </body>
+</html>

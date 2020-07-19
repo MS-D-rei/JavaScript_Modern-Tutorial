@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style> body { color: red; margin: 5px }</style>
+    </head>
+    <body class="main page">
+
+        Main page
+        <script>
+            'use strict'
+
+            alert(document.body.className);
+
+            document.body.classList.add('article');
+            document.body.classList.toggle('page'); // toggle => add it, if already has, remove it.
+            document.body.classList.contains('main'); // true
+
+            // classList is iterable => for...of
+            for ( let name of document.body.classList ) {
+                alert(name);
+            }
+
+            document.body.style.backgroundColor = prompt("enter backgroundColor", "grey");
+
+            document.body.style.display = 'none'; // hide body
+            setTimeout( () => document.body.style.display = "", 1000 ); // recover after 1 sec
+
+            alert(document.body.style.marginTop); // empty
+
+            let computedStyle = getComputedStyle(document.body); // getComputedStyle enables to read style value
+
+            alert(computedStyle.marginTop); // 5px
+
+        </script>
+    </body>
+</html>
