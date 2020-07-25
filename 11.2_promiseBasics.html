@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<script>
+    'use script'
+
+    /*
+    promise object returned by new Promise constructor has internal properties, state, result
+
+    new Promise(executor)
+    state: "pending"
+    result: undefined
+
+    in case of resolve(value)
+    state: "fulfilled"
+    result: value
+
+    in case of reject(error)
+    state: "rejected"
+    result: error
+    */
+
+
+    let promise = new Promise(function(resolve, reject) {
+        setTimeout( () => reject(new Error("Oops!")), 1000);
+    });
+
+    promise.finally( () => alert("promise ready"));
+    // 1. finally handler has no arguments. In finally we don't know whether the promise is successful or not.
+    // 2. finally handler passes through results and errors to the next handler.
+
+    promise.then(
+        result => alert(result), // result: value -> call this line
+        error => alert(error), // result: 
+    );
+
+</script>
