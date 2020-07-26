@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    // Promise.all takes an array of promises (it technically can be any iterable, but is usually an array) and returns a new promise.
+    // The new promise resolves when all listed promises are settled, and the array of their results becomes its result.
+    // A common trick is to map an array of job data into an array of promises, and then wrap that into Promise.all
+
+    let names = ['iliakan', 'remy', 'jeresig'];
+
+    // map array of names into array of fetch url
+    let requests = names.map( name => fetch(`https://api.github.com/users/${name}` ));
+
+    Promise.all(requests)
+        .then(responses => {
+            // show each element of responses
+            for (let response of responses) {
+                alert(`${response.url}: ${response.status}`);
+            }
+            return responses;
+        })
+        // map item of responses into item.json() to read the content
+        .then(responses => Promise.all(responses.map( item => item.json())))
+        // all JSON answers are parsed, "users" is a array of them
+        .then(users => users.forEach( user => alert(user.name)))
+        .catch(alert);
+    // f any of the promises is rejected, the promise returned by Promise.all immediately rejects with that error.
+</script>
