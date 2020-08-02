@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function* generateSequence() {
+        yield 1;
+        yield 2;
+        yield 3;
+    }
+
+    let generator = generateSequence();
+
+    // generator is iterable so can use for...of...
+    for ( let value of generator ) {
+        alert(value); // 1, 2, 3
+    }
+
+    let sequence = [0, ...generateSequence()]; // [0, ...generator] does't work
+
+    alert(sequence); // 0, 1, 2, 3
+
+</script>

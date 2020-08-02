@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    function* gen() {
+        try {
+            let ask1 = yield "2 + 2 = ?";
+
+            alert(ask1);
+
+            let ask2 = yield "3 + 3 = ?";
+
+            alert(ask2);
+
+        } catch (err) {
+            alert(err); // shows Error
+        }
+    }
+
+    let generator = gen();
+
+    alert(generator.next().value); // "2 + 2 = ?"
+    // the first generator.next() call should be always made without argument.
+    // the argument is ignored if passed
+    // .next() reaches the first yield, the result is returned to the out code.
+
+    alert(generator.next(4).value); // ask1 == 4, ask2 == "3 + 3 = ?"
+    // the second .next(4) passes 4 back to the generator as the result of the first yield.
+    // and resumes the execution.
+    // code reaches the second yield, the argument becomes the result of the first yield.
+
+    alert(generator.next(9).done); // ask2 == 9, done: true
+    // the third .next(9) passes 9 back to the generator as the result of the second yield.
+    // and resumes the execution.
+    // code reaches the end of the function, the argument becomes the result of the second yield and done: true
+
+</script>

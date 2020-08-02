@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<script>
+    'use strict';
+
+    let range = {
+        from: 1,
+        to: 5,
+
+        // for...of... range calls Symbol.iterator once in the very beginning
+        [Symbol.iterator]() {
+            // returns iterator object
+            // onward, for...of... works only with that object, asking it for next values
+            return {
+                current: this.from,
+                last: this.to,
+
+                // next() is called on each iteration by for...of... loop
+                next() {
+                    if (this.current <= this.last) {
+                        return { done: false, value: this.current++ };
+                    } else {
+                        return { done: true };
+                    }
+                }
+            };
+        }
+    };
+
+    // iteration over range returns numbers range.from to range.to
+    alert([...range]); // 1,2,3,4,5
+
+    let generatorRange = {
+        from: 1,
+        to: 5,
+
+        // a shorthand for [Symbol.iterator]: function*() {...}
+        *[Symbol.iterator]() {
+            for ( let value = this.from; value <= this.to; value++ ) {
+                yield value;
+            }
+        }
+    };
+
+    alert([...generatorRange]); // 1,2,3,4,5
+
+    alert(range[Symbol.iterator]()); // object Object
+    alert(generatorRange[Symbol.iterator]()); // object Generator
+
+    // for...of... expect 2 points below
+    // 1. it has a .next() method
+    // 2. returns values in the form { value: ..., done: true/false }
+
+</script>
