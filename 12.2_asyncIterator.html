@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<script>
+    'use strict'
+
+    let range = {
+        from: 1,
+        to: 5,
+
+        // for await of loop calls this method in the very beginning
+        [Symbol.asyncIterator]() {
+            // it returns the iterator object
+            // onward, for await of loop works only with the object
+            // use next() to ask the object the next value
+            return {
+                current: this.from,
+                last: this.to,
+
+                async next() {
+                    // it should return the value as an object { done: ..., value: ... }
+                    // automatically wrapped into a promise by async
+
+                    await new Promise( resolve => setTimeout(resolve, 1000) ); // wait 1 sec
+
+                    if (this.current <= this.last) {
+                        return { done: false, value: this.current++ };
+                    } else {
+                        return { done: true };
+                    }
+                }
+            };
+        }
+    };
+
+    // (function(){})() can run
+    (async function() {
+        for await ( let value of range ) {
+            alert(value);
+        }
+    })();
+
+</script>
