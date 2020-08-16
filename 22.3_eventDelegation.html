@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<div id="menu">
+    <button data-action="save">Save</button>
+    <button data-action="load">Load</button>
+    <button data-action="search">Search</button>
+</div>
+
+<script>
+    'use strict'
+
+    class Menu {
+        constructor(elem) {
+            this._elem = elem;
+            elem.onclick = this.onClick.bind(this);
+            // otherwise this would reference the DOM element (elem), not the Menu object
+        }
+
+        save() {
+            alert('saving');
+        }
+
+        load() {
+            alert('loading');
+        }
+
+        search() {
+            alert('searcing');
+        }
+
+        onClick(event) {
+            let action = event.target.dataset.action;
+            if (action) {
+                this[action](); // Menu[save or load or search]()
+            }
+        }
+    }
+
+    new Menu(menu);
+
+</script>

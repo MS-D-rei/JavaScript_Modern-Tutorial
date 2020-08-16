@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+Counter: <input type="button" value="1" data-counter="">
+One more counter: <input type="button" value="2" data-counter="">
+
+<button data-toggle-id="subscribe-mail">
+    Show the subscription form
+</button>
+
+<form action="" id="subscribe-mail" hidden>
+    Your mail: <input type="email">
+</form>
+
+<script>
+    'use strict'
+
+    document.addEventListener('click', function(event) {
+        // for when click the button of counter
+        if (event.target.dataset.counter != undefined) {
+            event.target.value++;
+        }
+
+        // for when click the button of email formd
+        let id = event.target.dataset.toggleId;
+        if (!id) return;
+
+        let elem = document.getElementById(id);
+        elem.hidden = false;
+
+    });
+
+    /*
+    When we assign an event handler to the document object, 
+    we should always use addEventListener, not document.on<event>
+    because the latter will cause conflicts: new handlers overwrite old ones.
+    */
+
+</script>
