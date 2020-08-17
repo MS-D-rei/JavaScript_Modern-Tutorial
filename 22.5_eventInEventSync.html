@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<button id="menu">Click me</button>
+
+<script>
+    'use strict'
+
+    // shows 1 -> alert -> 2 -> setTimeout alert
+    menu.onclick = () => {
+        alert(1);
+
+        menu.dispatchEvent(new CustomEvent('menu-open', {
+            bubbles: true
+        }));
+
+        setTimeout( () => menu.dispatchEvent(new CustomEvent('menu-open', {
+            bubbles: true
+        })) );
+
+        alert(2);
+    }
+
+    document.addEventListener('menu-open', function(event) {
+        alert('nested synchronous -> setTimeout async');
+    });
+
+</script>
