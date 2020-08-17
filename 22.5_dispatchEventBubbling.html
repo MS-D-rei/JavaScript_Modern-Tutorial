@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<button id="elem1">Autoclick</button>
+
+<h1 id="elem2">Hello from the script</h1>
+
+<h1 id="elem3">Hello for Jill</h1>
+
+<script>
+    'use strict'
+
+    elem1.onclick = () => alert('Click');
+    let event1 = new Event('click');
+    elem1.dispatchEvent(event1);
+
+    // catch hello1 event on document and describe how to work
+    // can't use elem.on<customEvent> = function(){} to describe fucntion content.
+    // so need to use addEventListener
+    document.addEventListener('hello1', function(event) {
+        alert("Hello from " + event.target.tagName);
+    });
+
+    // make hello1 event ( bubbles: true required to work properly )
+    let event2 = new Event("hello1", {bubbles: true});
+    // dispatch hello event
+    elem2.dispatchEvent(event2);
+
+    elem3.addEventListener("hello2", function(event) {
+        alert(event.detail.name);
+    });
+
+    // using CustomEvent is better when make custom event. It has 'detail' property
+    elem3.dispatchEvent(new CustomEvent("hello2", {
+        detail: {name: "Jill"}
+    }));
+
+</script>
