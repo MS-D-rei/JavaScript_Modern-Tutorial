@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .slider {
+                border-radius: 5px;
+                background: #E0E0E0;
+                background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+                width: 310px;
+                height: 15px;
+                margin: 5px;
+            }
+
+            .thumb  {
+                width: 10px;
+                height: 25px;
+                border-radius: 3px;
+                position: relative;
+                left: 10px;
+                top: -5px;
+                background: blue;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="slider" class="slider"> <!-- slide bar -->
+            <div class="thumb"></div> <!-- slide block -->
+        </div>
+
+        <script>
+            let thumb = slider.querySelector('.thumb');
+            let shiftX;
+
+            thumb.onpointerdown = function(event) {
+                event.preventDefault(); // prevent selection start browser action
+                shiftX = event.clientX - thumb.getBoundingClientRect().left;
+                thumb.setPointerCapture(event.pointerId); // bind thumb and event.pointerId
+            };
+
+            thumb.onpointermove = function(event) {
+                let newShift = event.clientX - shiftX - slider.getBoundingClientRect().left;
+                // newShift = current position - adjust pointer position on block - leftEdge of slide bar
+
+                // if the pointer go out of slide bar, adjust slide block position.
+                if (newShift < 0) newShift = 0; // ensure that doesn't go over left
+
+                let rightEdge = slider.offsetWidth - thumb.offsetWidth; // max move range
+                if (newShift > rightEdge) newShift = rightEdge; // ensure that block doesn't go over right
+
+                thumb.style.left = newShift + 'px';
+            };
+
+            thumb.ondragstart = () => false;
+
+        </script>
+    </body>
+</html>
