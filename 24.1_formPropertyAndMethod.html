@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <form name="my">
+        <input type="" name="one" value="1">
+        <input type="" name="two" value="2">
+        <input type="radio" name="age" value="10">
+        <input type="radio" name="age" value="20">
+        <input type="text" name="login">
+    </form>
+
+    <script>
+        'use strict'
+
+        // document.forms.my -> <form name='my'> element
+        // document.forms[0] -> the first form in document
+
+        let form = document.forms.my;
+        let elem_1 = form.elements.one;
+
+        alert(form.name); // my
+        alert(elem_1.value); // 1
+
+        // form.elements[name] --- if elements have same name, they will be a collection.
+        let ageElems = form.elements.age;
+        alert(ageElems[1].value); // 20
+
+        let login = form.elements.login;
+        // Backreference. login -> form.name -> my
+        alert(login.form.name); // my 
+
+    </script>
+</body>
+
+</html>
