@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <select name="" id="select" multiple>
+        <option value="apple">Apple</option>
+        <option value="pear">Pear</option>
+        <option value="banana">Banana</option>
+    </select>
+
+    <script>
+        // all these lines do the same thing
+
+        // select.options --- the collection of <option> subelements
+        select.options[2].selected = true;
+
+        // select.selectedIndex --- the number of the currently selected <option>
+        select.selectedIndex = 2;
+
+        // select.value --- the value of the currently selected <option>
+        select.value = 'banana';
+
+    </script>
+</body>
+
+</html>
