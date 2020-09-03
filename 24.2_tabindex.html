@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <style>
+        li { cursor: pointer }
+        :focus { outline: 1px dashed green; }
+    </style>
+
+    <ul>
+        <li tabindex="1">One</li>
+        <li tabindex="0">Zero</li>
+        <li tabindex="2">Two</li>
+        <li tabindex="-1">Minus One</li>
+    </ul>
+
+    <p>Press tab key, and then focus 1 - 2 - 0.</p>
+    <p>tabindex = '-1' tab key ignores but elem.focus() works</p>
+
+    <script>
+
+    </script>
+</body>
+
+</html>
