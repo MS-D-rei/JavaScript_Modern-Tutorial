@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+
+    From <input type="number" id="start" value="1"> - To <input type="number" id="end" value="4">
+    <button id="button">Click to select</button>
+    <script>
+        'use strict'
+
+        button.onclick = () => {
+            let range = new Range();
+
+            range.setStart(p, start.value);
+            // sets the start at 0th of the p node
+            range.setEnd(p, end.value);
+            // sets the end at 2nd of the p node. 2nd is not included.
+
+            document.getSelection().removeAllRanges();
+            document.getSelection().addRange(range);
+        };
+
+    </script>
+</body>
+
+</html>
