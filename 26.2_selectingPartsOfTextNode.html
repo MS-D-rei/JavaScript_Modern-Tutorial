@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p id="p">Example: <i>italic</i> and <b>bold</b></p>
+    <script>
+        'use strict'
+
+        let range = new Range();
+
+        range.setStart(p.firstChild, 2);
+        range.setEnd(p.querySelector('b').firstChild, 3);
+
+        alert(range);
+
+        document.getSelection().addRange(range);
+
+    </script>
+</body>
+
+</html>
