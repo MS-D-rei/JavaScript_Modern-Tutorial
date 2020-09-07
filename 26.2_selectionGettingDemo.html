@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p id="p">Select me: <i>italic</i> and <b>bold</b></p>
+
+    Cloned: <span id="cloned"></span>
+    <br>
+    As text: <span id="astext"></span>
+    <script>
+        'use stritct'
+
+        document.onselectionchange = function() {
+            // get the current selection
+            let selection = document.getSelection();
+
+            cloned.innerHTML = astext.innerHTML = "";
+
+            // firefox can have multiple ranges. this for loop is for firefox
+            for ( let i = 0; i < selection.rangeCount; i++) {
+                // rangeCount – count of ranges in the selection, maximum 1 in all browsers except Firefox.
+
+                cloned.append(selection.getRangeAt(i).cloneContents());
+                // getRangeAt(i) – get i-th range, starting from 0. In all browsers except firefox, only 0 is used.
+            }
+
+            astext.innerHTML += selection;
+        };
+    </script>
+</body>
+
+</html>

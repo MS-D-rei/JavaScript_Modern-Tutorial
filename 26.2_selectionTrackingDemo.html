@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <p id="p">Select me: <i>italic</i> and <b>bold</b></p>
+    From <input id="from" disabled> – To <input id="to" disabled>
+    <script>
+        'use strict'
+
+        document.onselectionchange = function() {
+            let { anchorNode, anchorOffset, focusNode, focusOffset} = document.getSelection();
+
+            from.value = `${anchorNode && anchorNode.data}:${anchorOffset}`;
+            to.value = `${focusNode && focusNode.data}:${focusOffset}`;
+        };
+    </script>
+</body>
+
+</html>
