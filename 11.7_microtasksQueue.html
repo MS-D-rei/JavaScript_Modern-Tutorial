@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        'use strict'
+
+        // 'microtask queue'
+        // 1. the queue is first-in-first-out
+        // 2. execution of tasks in initiated only when nothing else is running
+
+        let promise = Promise.reject(new Error("Promise Failed"));
+
+        setTimeout( () => promise.catch(err => alert('caught')), 1000 );
+
+        window.addEventListener('unhandledrejection', event => alert(event.reason));
+
+        // this code shows Promise Failed -> caught
+
+    </script>
+</html>
