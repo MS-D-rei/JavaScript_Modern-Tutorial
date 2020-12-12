@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- an umbrella term “AJAX” (abbreviated Asynchronous JavaScript And XML)
+for network requests from JavaScript. -->
+
+<!-- basic syntax -> fetch(url, [options]) -->
+
+<!-- without options, it is a simple GET request, downloading the content of url 
+getting a response is a 2 stage process -->
+
+<!-- 1, the promise returned by fetch resolves with an object of built-in Response class
+as soon as the serve responds with headers. -->
+<!-- at this stage, we check HTTP status, the promise rejects
+if the fetch was unable to make HTTP request, e.g. network problems. -->
+<!-- status - HTTP status e.g. 200, 404, 500 -->
+<!-- ok - boolean, true if the HTTP status code is 200 - 299.  -->
+
+<!-- 2. to get the response body, use an addtional method call -->
+<!-- 
+response.text() – read the response and return as text,
+response.json() – parse the response as JSON,
+response.formData() – return the response as FormData object (explained in the next chapter),
+response.blob() – return the response as Blob (binary data with type),
+response.arrayBuffer() – return the response as ArrayBuffer (low-level representation of binary data),
+additionally, response.body is a ReadableStream object, it allows you to read the body chunk-by-chunk, we’ll see an example later.
+-->
+<!-- we can choose only one body-reading method.
+if we have already used response.text(), we can't use response.json() because body content has already been processed. -->
+<html>
+
+<body>
+
+
+    <script>
+        (async () => {
+            let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
+            let response = await fetch(url);
+            // the promise returned by fetch resolves Response class
+
+            let commits = await response.json();
+            // use Response class promise-based method
+
+            alert(commits[0].author.login);
+
+            let response2 = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
+
+            alert(response2.headers.get('Context-Type'));
+
+            for (let [key, value] of response2.headers) {   
+                alert(`${key} = ${value}`);
+            }
+
+        })();
+
+    </script>
+</body>
+
+</html>
