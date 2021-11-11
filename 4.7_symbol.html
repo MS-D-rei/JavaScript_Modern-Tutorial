@@ -28,6 +28,23 @@
             for (let key in user) {
                 alert(key);
             } // => name, age
+
+            // global symbol => let var = Symbol.for(key).
+            let globalSymbol1 = Symbol.for("id");
+            let globalSymbol2 = Symbol.for("id");
+            let globalSymbol3 = Symbol.for("name");
+            alert( globalSymbol1 === globalSymbol2 ); // => true
+            alert( globalSymbol1 === globalSymbol3 ); // => false
+
+            // Symbol.keyFor(symbol) => can check key of the global symbol
+            alert( Symbol.keyFor(globalSymbol1) ); // => "id"
+            alert( Symbol.keyFor(globalSymbol3) ); // => "name"
+
+            // Symbol.keyFor(symbol) is for global symbol key.
+            // But every symbol has own description.
+            let localSymbol1 = Symbol("id");
+            alert( Symbol.keyFor(localSymbol1) ); // => undefined
+            alert( localSymbol1.description ); // => "id"
             
         </script>
     </body>
