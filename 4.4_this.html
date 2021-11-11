@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<script>
+"use strict";
+
+let user = { name: "John" };
+let admin = { name: "Admin" };
+
+function sayHi() {
+  alert( this.name );
+}
+
+// use the same function in two objects
+user.f = sayHi;
+admin.f = sayHi;
+
+alert(JSON.stringify(user));
+
+// these calls have different this
+// "this" inside the function is the object "before the dot"
+user.f(); // John  (this == user)
+admin.f(); // Admin  (this == admin)
+
+admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
+
+// arrow function doens't have own "this"
+// so use user.sayHi()'s "this" (=user)
+let user_1 = {
+  firstName: "Ilya",
+  sayHi() {
+    let arrow = () => alert(this.firstName);
+    arrow();
+  }
+};
+
+// normal function has own "this"
+// so sayHello() tries to use own "this" but it is undefined.
+let user_2 = {
+    firstName: "John",
+    sayHi() {
+        function sayHello() {
+            alert(this.firstName);
+        };
+        sayHello();
+    }
+}
+
+user_1.sayHi(); // Ilya
+user_2.sayHi(); // TypeError: Cannot read properties of undefined
+
+</script>
