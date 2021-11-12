@@ -10,6 +10,12 @@
         <script>
             'use strict'
 
+            // node.append(...nodes or strings) - append nodes or strings at the end of node
+            // node.prepend(...nodes or strings) - insert nodes or strings at the beginning of node
+            // node.before(...nodes or strings) - before node
+            // node.after(...nodes or strings) - after node
+            // node.replaceWith(...nodes or strings) - replaces node with the given nodes or strings
+
             ol.before('before');
             ol.after('after');
 
@@ -23,6 +29,12 @@
             liLast.innerHTML = "append";
             ol.append(liLast); // insert li after last element, <li>2</li>
 
+            // elem.insertAdjacentHTML(where, html)
+            // where - 4 types
+            // "beforebegin" insert html immediately before elem
+            // "afterbegin" insert html into elem at the beginning
+            // "beforeend" insert html into elem at the end
+            // "afterend" insert html immediately after elem
             ol.insertAdjacentHTML("beforebegin", "<p>ol.insertAdjacentHTML beforebegin</p><hr>");
             ol.insertAdjacentHTML("afterend", "<p>ol.insertAdjacentHTML afterend</p><hr>")
 
@@ -30,12 +42,12 @@
                 let result = [];
 
                 for (let i = 3; i <= 5; i++) {
-                    let li = document.createElement('li');
-                    li.append(i);
+                    let li = document.createElement('li'); // create <li></li>
+                    li.append(i); // <li> i </li>
                     result.push(li);
                 }
 
-                return result;
+                return result; // [li, li, li]
             }
 
             // not ol.append( getListContent() ). use '...' operator to take the content of result array.
