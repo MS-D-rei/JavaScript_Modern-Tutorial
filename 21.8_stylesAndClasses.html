@@ -15,7 +15,7 @@
             document.body.classList.toggle('page'); // toggle => add it, if already has, remove it.
             document.body.classList.contains('main'); // true
 
-            // classList is iterable => for...of
+            // classList is iterable => can use for...of
             for ( let name of document.body.classList ) {
                 alert(name);
             }
@@ -25,9 +25,11 @@
             document.body.style.display = 'none'; // hide body
             setTimeout( () => document.body.style.display = "", 1000 ); // recover after 1 sec
 
+            // "style" property operates only on the value of the "style" attribute, without any CSS cascade
             alert(document.body.style.marginTop); // empty
 
-            let computedStyle = getComputedStyle(document.body); // getComputedStyle enables to read style value
+            // getComputedStyle enables to read style value
+            let computedStyle = getComputedStyle(document.body); 
 
             alert(computedStyle.marginTop); // 5px
 
