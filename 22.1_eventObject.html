@@ -22,9 +22,11 @@
     elem.addEventListener("click", handler1);
     elem.addEventListener("click", handler2);
 
+    // When an event happens, the browser creates "event" object,
+    // puts details into it and passes event object as an argument to the handler
     elem2.onclick = function(event) {
         // type === click, currentTarget === this unless handler is a arrow function
-        alert(event.type + 'at' + event.currentTarget);
+        alert(event.type + ' at ' + event.currentTarget);
         // Window-relative coordinates of the cursor, for pointer events.
         alert('Coordinates: ' + event.clientX + ':' + event.clientY);
     };
@@ -34,7 +36,7 @@
             alert( event.type + ' at ' + event.currentTarget );
         }
     };
-    // addEventListener receives an object as the handler, it calls obj.handleEvent(event) in case of an event.
+    // addEventListener receives can an object as the handler, it calls obj.handleEvent(event) in case of an event.
     elem3.addEventListener("click", obj);
 
     class Menu {
@@ -56,7 +58,7 @@
 
     class Menu2 {
         handleEvent(event) {
-            // on + M + ouse(down or up)=> onMousedown or onMouseup)
+            // on + M + ouse(down or up)=> onMousedown or onMouseup
             let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
             this[method](event);
         }
