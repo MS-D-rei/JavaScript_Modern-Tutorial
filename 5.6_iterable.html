@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            'use strict'
+
+            // "iterable" are objects that implement the Symbol.iterator method.
+            // "array-like" are objects that have indexed properties and length, so they look like array.
+
+            // iterable
+
+            let range = {
+                from: 1,
+                to: 5,
+            };
+
+            // for..of loop call Symbol.iterator when it is called.
+            range[Symbol.iterator] = function() {
+
+                // Symbol.iterator returns the iterator object.
+                // Symbol.iteraotr works only with this iterator.
+                return {
+                    current: this.from,
+                    last: this.to,
+
+                    // next() is called on each iteration by for..of loop
+                    next() {
+                        // next() returns the value as an object ( done: ..., value: ... )
+                        // if it returns { done: true }, iteration is finished.
+                        if (this.current <= this.last) {
+                            return { done: false, value: this.current++ };
+                        } else {
+                            return { done: true };
+                        }
+                    }
+                };
+            };
+
+            for (let num of range) {
+                alert(num);
+            }
+
+            // array-like -> it has indexed properties and length.
+
+            let arrayLike = {
+                0: "Hello",
+                1: "world",
+                length: 2,
+            };
+
+            /*
+            for (let item of arrayLike) {
+                alert(item);
+            } // => Error. no Symbol.iterator
+            */
+
+            // iterable and array-like don't have array method like push and pop, because they are not array.
+            // Array.from() can make them real arrays.
+
+            let arrFromArrayLike = Array.from(arrayLike);
+
+            let arrFromIterable = Array.from(range, num => num * num);
+
+            alert(arrFromIterable); // 1,4,9,16,25
+
+            
+
+        </script>
+    </body>
+</html>
