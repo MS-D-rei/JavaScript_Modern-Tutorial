@@ -12,9 +12,9 @@
             // innerHTML += does 1. remove old content 2. write old + new content.
             alert( document.getElementById('elem').outerHTML );
 
-            let div = document.querySelectorAll('div')[1];
-            div.outerHTML = 'New element';
-            alert(div.outerHTML); // keep the content of outerHTML but window shows 'New element'
+            let div = document.querySelectorAll('div')[1]; // <div id="elem">Hello <b>World</b></div>
+            div.outerHTML = '<p>New element<p>';
+            alert(div.outerHTML); // keep the content of outerHTML but browser shows 'New element'
         </script>
     </body>
 </html>
