@@ -1,8 +1,30 @@
 <!DOCTYPE html>
 <html>
+    <style>
+        .order[data-order-state="new"] {
+            color: green;
+        }
+        
+        .order[data-order-state="pending"] {
+            color: blue;
+        }
+
+        .order[data-order-state="canceled"] {
+            color: red;
+        }
+
+    </style>
     <body>
         <div show-info = 'name'></div>
         <div show-info = 'age'></div>
+
+        <!-- 
+            To avoid conflicts between standard attributes and non-standard ones,
+            use attributes starting with "data-". They are available in the "dataset" property.
+        -->
+        <div id="order" class="order" data-order-state="new">
+            A new order.
+        </div>
         
         <script>
             'use strict'
@@ -12,10 +34,15 @@
                 age: 25,
             }
 
-            for ( let div of document.querySelectorAll('[show-info]') ) { // use [] for x-y attribute style
+            for ( let div of document.querySelectorAll('[show-info]') ) { // use [] to select attribute. 
                 let field = div.getAttribute('show-info');
                 div.innerHTML = user[field];
             }
+
+            // order-state => orderState
+            alert(order.dataset.orderState); // new
+
+            order.dataset.orderState = "pending"; // => change color to blue
 
         </script>
     </body>
