@@ -20,10 +20,17 @@
     for (let prop in rabbit) {
         let isOwn = rabbit.hasOwnProperty(prop); // obj.hasOwnProperty(value) returns true if obj has value.
         if (isOwn) {
-            alert(`Our: ${prop}`);
+            alert(`Our: ${prop}`); // "Our: jumps"
         } else {
-            alert(`Inherited: ${prop}`);
+            alert(`Inherited: ${prop}`); // "Inherited: eats"
         }
     }
+
+    // The method, hasOwnProperty(prop), where is it coming from?
+    // rabbit -> [[Prototype]] -> animal -> [[Prototype]] -> Object.prototype -> [[Prototype]] -> null
+    // Object.prototype.hasOwnProperty(prop). The method is inherited from Object.prototype.
+    
+    // Why does hasOwnProperty not appear in the for..in loop like eats and jumps?
+    // Object.prototype has "enumerable: false" flag, so can't loop it.
 
 </script>
