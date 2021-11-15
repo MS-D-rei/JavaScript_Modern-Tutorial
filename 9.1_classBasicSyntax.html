@@ -21,13 +21,18 @@
     alert( typeof User ); // function
     // a class is a kind of function in JavaScript.
 
+    // What class User {...} construct really does is
+    // 1. creates a function named User, that becomes the result of the class declaration.
+    //    the function code is taken from the "constructor" method.
+    // 2. stores class methods in User.prototype.
+
     alert( User === User.prototype.constructor ); // true
     // more precisely, it is constructor method.
 
     alert( User.prototype.sayHi ); // alert(this.name)
     // the methods are in User.prototype
 
-    alert( Object.getOwnPropertyNames(User.prototype) ); // 
+    alert( Object.getOwnPropertyNames(User.prototype) ); // constructor, sayHi
     // there are 2 methods in the prototype.
     
 </script>
