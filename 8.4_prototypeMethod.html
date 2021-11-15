@@ -2,10 +2,18 @@
 <script>
     'use strict'
 
+    // __proto__ is considered outdated and somewhat deprecated in browser part
+
+    // the modern methods are
+    // Object.create(proto, { descriptor })
+    // Object.getPrototypeOf(obj)
+    // Object.setPrototypeOf(obj, proto)
+
     let animal = {
         eats: true,
     }
 
+    // create a new object with animal as a prototype
     let rabbit = Object.create(animal, {
         jumps: { value: true, writable: true, enumerable: true, configurable: true, },
     });
@@ -14,13 +22,13 @@
 
     alert(Object.getPrototypeOf(rabbit) === animal); // true
 
+    // change the prototype of rabbit to {}
     Object.setPrototypeOf(rabbit, {});
 
+    // Object.create performs as an object cloning more powerful than copying properties with for..in loop.
     let cloneRabbit = Object.create( Object.getPrototypeOf(rabbit), Object.getOwnPropertyDescriptors(rabbit) );
 
     let descriptor_cloneRabbit = Object.getOwnPropertyDescriptor(cloneRabbit, 'jumps');
-    // cloning object more powerful than for...in loop
-    // this makes a exact copy including all props enumerable, configurable, data props and accesor props.
 
     alert( JSON.stringify(descriptor_cloneRabbit) );
     alert( Object.getPrototypeOf(cloneRabbit) === animal ); // false
