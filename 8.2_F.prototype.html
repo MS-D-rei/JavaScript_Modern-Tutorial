@@ -2,32 +2,33 @@
 <script>
     'use strict'
 
+    // every function has the "prototype" property even by default.
+    // default property is an object with the only property constructor
+    // that points back to the function itself.
+
     let animal = {
         ears: true,
     };
 
     function Rabbit(name) {
         this.name = name;
+        // prototype: { constructor: Rabbit }
     }
 
-    Rabbit.prototype = animal; // prototype is a property.
+    alert( Rabbit.prototype.constructor == Rabbit ); // true
 
-    let rabbit = new Rabbit("White rabbit");
+    let rabbit_1 = new Rabbit("alpha rabbit");
+    alert( rabbit_1.constructor == Rabbit ); // true
 
-    alert( rabbit.ears );
+    let rabbit_1_bro = new rabbit_1.constructor("alpha rabbit bro");
+    alert( rabbit_1_bro.constructor == Rabbit) // true
 
-    function Bear(name) {
-        this.name = name;
-        alert(name);
-    }
-    // by default, Bear.constructor = { constructor: Bear }
-    alert( Bear.prototype.constructor == Bear ); 
-    
-    let bear = new Bear("White bear");
-    alert(bear.constructor == Bear); // true, from prototype
+    // prototype of function is a property. we can change it like a normal one.
+    Rabbit.prototype = animal;
 
-    let bear_2 = new bear.constructor("Black bear");
-    let bear_3 = new Bear("Red bear");
-
+    let rabbit_2 = new Rabbit("beta rabbit");
+    alert( rabbit_2.constructor == Rabbit ); // false rabbit_2.prototype(=animal) is not function, so dosen't have constructor
+    alert( rabbit_2.constructor == animal ); // false
+    alert( rabbit_2.ears ); // true
 
 </script>
