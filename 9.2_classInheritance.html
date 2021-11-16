@@ -19,8 +19,11 @@
 
     let animal = new Animal("The First");
 
-    class Rabbit extends Animal { // extends sets Rabbit.prototype = Animal.prototype
-        // if don't write constructor, inherit constructor from Animal so don't need to write.
+    // super.method(...) is to call a parent method
+    // super(...) is to call a parent constructor (inside our constructor only)
+
+    class Rabbit extends Animal { // extends sets Rabbit.prototype.[[prototype]] = Animal.prototype
+        // if don't write constructor, inherit constructor from Animal.
         constructor(name, earLength) {
             super(name);
             this.earLength = earLength;
@@ -41,7 +44,7 @@
     JS engine checks as follows
     1. The rabbit object.
     2. Rabbit.prototype.
-    3. Animal.prototype. (this case)
+    3. Animal.prototype.
     */
     rabbit.hide();
     rabbit.stop();
