@@ -2,14 +2,24 @@
 <script>
     'use strict'
 
+    // the simplist way to implement a mixin is to add the methods to the class.prototype.
+
+    let sayMixin = {
+        say(phrase) {
+            alert(phrase);
+        }
+    };
+
     let sayHiMixin = {
         sayHi() {
-            alert(`Hello ${this.name}`);
+            super.say(`Hello ${this.name}`);
         },
         sayBye() {
-            alert(`Bye ${this.name}`);
+            super.say(`Bye ${this.name}`);
         },
     };
+
+    Object.setPrototypeOf(sayHiMixin, sayMixin);
 
     class User {
         constructor(name) {
