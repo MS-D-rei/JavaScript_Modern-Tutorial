@@ -4,7 +4,7 @@
 
     class User {
         constructor(name) {
-            this.name = name;
+            this.name = name; // .name is not property, this is a method(setter)
         }
 
         get name() {
@@ -21,7 +21,11 @@
     }
 
     let user = new User("John");
-    alert(user.name);
+    // 1. create a "User" function that has the result of the constructor method.
+    //    User.prototype has other methods (in this case, getter and setter)
+    // 2. "user" object has internal [[prototype]] property. user[[property]] -> User.prototype
+
+    alert(user.name); // getter, return this._name
 
     let user2 = new User("");
 
