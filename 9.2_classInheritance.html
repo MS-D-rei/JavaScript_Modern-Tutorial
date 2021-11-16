@@ -25,6 +25,8 @@
     class Rabbit extends Animal { // extends sets Rabbit.prototype.[[prototype]] = Animal.prototype
         // if don't write constructor, inherit constructor from Animal.
         constructor(name, earLength) {
+            // constructor in inheriting classes must call super(...)
+            // because inheriting class's constructor doesn't make "this" before making a new object when "new" called
             super(name);
             this.earLength = earLength;
         }
