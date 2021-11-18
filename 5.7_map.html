@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        'use strict'
+
+        // Map is a collection of keyed data items.
+        // the diff is that Map can have any type of keys.
+        // it means Map can have object as a key.
+
+        // map is consist of arrays.
+        // ( [key, value], [key, value], [key, value] )
+        // map.get(key) -- return the value of the key
+        // map.set(key, value) =-- add a array of the key and value
+        // map.has(key) -- return true if Map has the key
+        // map.size -- return the number of the arrays in Map
+
+        let map = new Map();
+
+        map.set('1', 'str1'); // string 1 can be a key of map
+        map.set(1, 'num1');
+        map.set(true, 'bool1');
+
+        console.log(...map.entries());
+
+    </script>
+</html>
