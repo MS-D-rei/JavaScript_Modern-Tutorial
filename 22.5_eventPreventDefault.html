@@ -13,11 +13,11 @@
 
     function hide() {
         let event = new CustomEvent("hide", {
-            cancelable: true // this is required to make preventDefault() work
+            cancelable: true // this is required to make preventDefault() works otherwise event.preventDefault() is ignored.
         });
 
         if (!rabbit.dispatchEvent(event)) {
-            // answer 'yes' -> rabbit.dispatchEvent(event) becomes false. !false -> true
+            // answer 'yes' -> rabbit.dispatchEvent(event) returns false. !false -> true
             alert('The action was prevented by a preventDefault()');
         } else {
             // !true -> false
@@ -27,7 +27,7 @@
 
     rabbit.addEventListener('hide', function(event) {
         if ( confirm("Call preventDefault?") ) {
-            // event.preventDefault() makes dispatchEvent(event) false
+            // event.preventDefault() makes dispatchEvent(event) returns false
             event.preventDefault();
         }
     });
