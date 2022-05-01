@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
-Counter: <input type="button" value="1" data-counter="">
-One more counter: <input type="button" value="2" data-counter="">
+Counter: <input type="button" value="1" data-counter>
+One more counter: <input type="button" value="2" data-counter>
+Counter without dataset.counter: <input type="button" value="3">
 
 <button data-toggle-id="subscribe-mail">
     Show the subscription form
@@ -16,7 +17,7 @@ One more counter: <input type="button" value="2" data-counter="">
 
     document.addEventListener('click', function(event) {
         // for when click the button of counter
-        if (event.target.dataset.counter != undefined) {
+        if (event.target.dataset.counter != undefined) { // dataset.counter == '' if the elem has data-counter attribute
             event.target.value++;
         }
 
