@@ -11,7 +11,7 @@
 
     elem1.onclick = () => alert('Click');
     let event1 = new Event('click');
-    elem1.dispatchEvent(event1);
+    elem1.dispatchEvent(event1); // => Click
 
     // catch hello1 event on document and describe how to work
     // can't use elem.on<customEvent> = function(){} to describe fucntion content.
@@ -23,10 +23,10 @@
     // make hello1 event ( bubbles: true required to work properly )
     let event2 = new Event("hello1", {bubbles: true});
     // dispatch hello event
-    elem2.dispatchEvent(event2);
+    elem2.dispatchEvent(event2); // => Hello from H1
 
     elem3.addEventListener("hello2", function(event) {
-        alert(event.detail.name);
+        alert(event.detail.name); // => Jill
     });
 
     // using CustomEvent is better when make custom event. It has 'detail' property
