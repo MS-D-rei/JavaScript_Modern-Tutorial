@@ -3,17 +3,23 @@
     'use strict'
 
     let user = {
-        firstName: John,
+        firstName: 'John',
         sayHi() {
             alert(`Hello, ${this.firstName}`);
         },
     };
 
-    let sayHi = user.sayHi.bind(user); // fixed sayHi's this = user.
+    user.sayHi(); // Hello, John
+    
+    let sayHi = user.sayHi; // sayHi = alert(`Hello, ${this.firstname}`);
 
-    sayHi();
+    setTimeout(sayHi, 1000); // Hello, undefined
 
-    setTimeout(sayHi, 1000);
+    let sayHiBinded = user.sayHi.bind(user); // fixed sayHi's this = user.
+
+    sayHiBinded(); // Hello, John
+
+    setTimeout(sayHiBinded, 1000); // Hello, John
 
     user = {
         sayHi() {
