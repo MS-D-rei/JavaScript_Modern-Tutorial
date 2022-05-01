@@ -13,7 +13,9 @@
         constructor(elem) {
             this._elem = elem;
             elem.onclick = this.onClick.bind(this);
-            // otherwise this would reference the DOM element (elem), not the Menu object
+            // otherwise this would reference the DOM element (elem) => div#menu, not the Menu object
+            // fix this to this(Menu) at this moment
+            // otherwise this will be div#menu, so div#menu[action] will be called and returns undefined.
         }
 
         save() {
